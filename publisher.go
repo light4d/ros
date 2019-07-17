@@ -140,7 +140,7 @@ func (pub *defaultPublisher) listenRemoteSubscriber() {
 
 func (pub *defaultPublisher) Publish(msg Message) {
 	var buf bytes.Buffer
-	_ = msg.Serialize(&buf)
+	_ = msg.Marshal(&buf)
 	pub.msgChan <- buf.Bytes()
 }
 
@@ -197,7 +197,7 @@ type singleSubPub struct {
 
 func (ssp *singleSubPub) Publish(msg Message) {
 	var buf bytes.Buffer
-	_ = msg.Serialize(&buf)
+	_ = msg.Marshal(&buf)
 	ssp.msgChan <- buf.Bytes()
 }
 

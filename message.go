@@ -13,6 +13,6 @@ type MessageType interface {
 
 type Message interface {
 	Type() MessageType
-	Serialize(buf *bytes.Buffer) error
-	Deserialize(buf *bytes.Reader) error
+	Marshal(buf *bytes.Buffer) error
+	Unmarshal(buf *bytes.Reader) error
 }

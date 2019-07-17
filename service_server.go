@@ -239,7 +239,7 @@ func (s *remoteClientSession) start() {
 	s.server.node.jobChan <- func() {
 		srv := s.server.srvType.NewService()
 		reader := bytes.NewReader(resBuffer)
-		err := srv.ReqMessage().Deserialize(reader)
+		err := srv.ReqMessage().Unmarshal(reader)
 		if err != nil {
 			s.errorChan <- err
 		}
@@ -256,7 +256,7 @@ func (s *remoteClientSession) start() {
 		if result.IsNil() {
 			logger.Debug("Service callback success")
 			var buf bytes.Buffer
-			_ = srv.ResMessage().Serialize(&buf)
+			_ = srv.ResMessage().Marshal(&buf)
 			s.responseChan <- buf.Bytes()
 		} else {
 			logger.Debug("Service callback failure")

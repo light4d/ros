@@ -106,7 +106,7 @@ func (sub *defaultSubscriber) start(wg *sync.WaitGroup, nodeId string, nodeApiUr
 			jobChan <- func() {
 				m := sub.msgType.NewMessage()
 				reader := bytes.NewReader(msgEvent.bytes)
-				if err := m.Deserialize(reader); err != nil {
+				if err := m.Unmarshal(reader); err != nil {
 					logger.Error(err)
 				}
 				args := []reflect.Value{reflect.ValueOf(m), reflect.ValueOf(msgEvent.event)}

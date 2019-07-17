@@ -89,7 +89,7 @@ func (c *defaultServiceClient) Call(srv Service) error {
 
 	// 3. Send request
 	var buf bytes.Buffer
-	_ = srv.ReqMessage().Serialize(&buf)
+	_ = srv.ReqMessage().Marshal(&buf)
 	reqMsg := buf.Bytes()
 	size := uint32(len(reqMsg))
 	conn.SetDeadline(time.Now().Add(10 * time.Millisecond))
@@ -139,7 +139,7 @@ func (c *defaultServiceClient) Call(srv Service) error {
 		return err
 	}
 	resReader := bytes.NewReader(resBuffer)
-	if err := srv.ResMessage().Deserialize(resReader); err != nil {
+	if err := srv.ResMessage().Unmarshal(resReader); err != nil {
 		return err
 	}
 	return nil
