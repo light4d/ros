@@ -256,7 +256,7 @@ func (s *remoteClientSession) start() {
 		if result.IsNil() {
 			logger.Debug("Service callback success")
 			var buf bytes.Buffer
-			_ = srv.ResMessage().Marshal(&buf)
+			_, _ = srv.ResMessage().Marshal(&buf)
 			s.responseChan <- buf.Bytes()
 		} else {
 			logger.Debug("Service callback failure")

@@ -89,7 +89,7 @@ func (c *defaultServiceClient) Call(srv Service) error {
 
 	// 3. Send request
 	var buf bytes.Buffer
-	_ = srv.ReqMessage().Marshal(&buf)
+	_, _ = srv.ReqMessage().Marshal(&buf)
 	reqMsg := buf.Bytes()
 	size := uint32(len(reqMsg))
 	conn.SetDeadline(time.Now().Add(10 * time.Millisecond))
