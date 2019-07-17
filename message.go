@@ -13,6 +13,6 @@ type MessageType interface {
 
 type Message interface {
 	Type() MessageType
-	Marshal(buf *bytes.Buffer) error
+	Marshal(buf *bytes.Buffer) ([]byte, error)
 	Unmarshal(buf *bytes.Reader) error
 }
