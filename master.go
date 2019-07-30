@@ -2,7 +2,7 @@ package rosgo
 
 import (
 	"fmt"
-	"github.com/fetchrobotics/rosgo/xmlrpc"
+	"github.com/light4d/rosgo/xmlrpc"
 )
 
 func callRosApi(calleeUri string, method string, args ...interface{}) (interface{}, error) {
